@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Additional global styles can go here */
+body {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
