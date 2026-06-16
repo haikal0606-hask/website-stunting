@@ -30,7 +30,7 @@ const ArticleDetail = () => {
   useEffect(() => {
     const fetchArticleDetail = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/articles/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/articles/${id}`);
         const data = await res.json();
 
         if (data.success && data.data) {

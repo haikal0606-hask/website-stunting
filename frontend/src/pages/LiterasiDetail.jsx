@@ -9,7 +9,7 @@ const LiterasiDetail = () => {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/literasi/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/literasi/${id}`);
         const result = await res.json();
         
         if (result.success && result.data) {
@@ -48,7 +48,7 @@ const LiterasiDetail = () => {
       }
     } else if (data.tipe_video === 'internal') {
       // Tambahkan alamat host backend untuk file internal lokal
-      videoSource = `http://localhost:5000${data.video_url}`;
+      videoSource = `${data.video_url}`;
     }
 
     if (data.tipe_video === 'youtube') {

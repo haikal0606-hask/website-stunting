@@ -7,7 +7,7 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/quizzes/leaderboard');
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/quizzes/leaderboard');
         const data = await res.json();
         if (data.success) {
           setLeaderboardData(data.data);

@@ -25,7 +25,7 @@ const QuizSession = () => {
           return;
         }
         // Fetch ke backend API GET /api/quizzes
-        const res = await fetch('http://localhost:5000/api/quizzes', {
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/quizzes', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -113,7 +113,7 @@ const QuizSession = () => {
     
     try {
         const token = localStorage.getItem('token');
-        const res = await fetch('http://localhost:5000/api/quizzes/submit', {
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/quizzes/submit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

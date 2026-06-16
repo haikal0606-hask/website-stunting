@@ -44,25 +44,25 @@ const AdminDashboard = () => {
     setLoading(true);
     try {
       if (activeTab === 'artikel') {
-        const res = await fetch('http://localhost:5000/api/articles');
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/articles');
         const data = await res.json();
         if (data.success) setArticles(data.data);
       } else if (activeTab === 'kuis') {
-        const res = await fetch('http://localhost:5000/api/quizzes/admin', {
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/quizzes/admin', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
         if (data.success) setQuizzes(data.data);
       } else if (activeTab === 'literasi') {
-        const res = await fetch('http://localhost:5000/api/literasi');
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/literasi');
         const data = await res.json();
         if (data.success) setLiterasiList(data.data);
       } else if (activeTab === 'sekolah') {
-        const res = await fetch('http://localhost:5000/api/schools');
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/schools');
         const data = await res.json();
         if (data.success) setSchools(data.data);
       } else if (activeTab === 'riwayat-kuis') {
-        const res = await fetch('http://localhost:5000/api/quizzes/results/all', {
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/quizzes/results/all', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
@@ -86,8 +86,8 @@ const AdminDashboard = () => {
     e.preventDefault();
     const isEdit = modalType === 'edit';
     const url = isEdit 
-      ? `http://localhost:5000/api/articles/${articleForm.id}` 
-      : 'http://localhost:5000/api/articles';
+      ? `/api/articles/${articleForm.id}` 
+      : '/api/articles';
 
     try {
       setLoading(true);
@@ -121,7 +121,7 @@ const AdminDashboard = () => {
   const handleDeleteArticle = async (id) => {
     if(!window.confirm("Yakin ingin menghapus artikel ini?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/articles/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/articles/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -136,8 +136,8 @@ const AdminDashboard = () => {
     e.preventDefault();
     const isEdit = modalType === 'edit';
     const url = isEdit 
-      ? `http://localhost:5000/api/quizzes/${quizForm.id}` 
-      : 'http://localhost:5000/api/quizzes';
+      ? `/api/quizzes/${quizForm.id}` 
+      : '/api/quizzes';
       
     try {
       const res = await fetch(url, {
@@ -168,7 +168,7 @@ const AdminDashboard = () => {
   const handleDeleteQuiz = async (id) => {
     if(!window.confirm("Yakin ingin menghapus kuis/soal ini?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/quizzes/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/quizzes/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -183,8 +183,8 @@ const AdminDashboard = () => {
     e.preventDefault();
     const isEdit = modalType === 'edit';
     const url = isEdit 
-      ? `http://localhost:5000/api/schools/${schoolForm.id}` 
-      : 'http://localhost:5000/api/schools';
+      ? `/api/schools/${schoolForm.id}` 
+      : '/api/schools';
       
     try {
       setLoading(true);
@@ -214,7 +214,7 @@ const AdminDashboard = () => {
   const handleDeleteSchool = async (id) => {
     if(!window.confirm("Yakin ingin menghapus data sekolah ini?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/schools/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/schools/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -229,8 +229,8 @@ const AdminDashboard = () => {
     e.preventDefault();
     const isEdit = modalType === 'edit';
     const url = isEdit 
-      ? `http://localhost:5000/api/literasi/${literasiForm.id}` 
-      : 'http://localhost:5000/api/literasi';
+      ? `/api/literasi/${literasiForm.id}` 
+      : '/api/literasi';
       
     const formData = new FormData();
     formData.append('tipe_kelompok', literasiForm.tipe_kelompok);
@@ -276,7 +276,7 @@ const AdminDashboard = () => {
   const handleDeleteLiterasi = async (id) => {
     if(!window.confirm("Beneran mau menghapus materi video/literasi ini?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/literasi/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/literasi/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -291,7 +291,7 @@ const AdminDashboard = () => {
     if(!window.confirm("PERINGATAN: Anda yakin ingin me-reset (menghapus) seluruh riwayat nilai kuis? Semua data evaluasi siswa akan hilang permanen!")) return;
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:5000/api/quizzes/results/reset`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/quizzes/results/reset`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

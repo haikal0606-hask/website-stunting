@@ -18,7 +18,7 @@ const Profile = () => {
         const token = localStorage.getItem('token');
         if (!token) throw new Error('Harap masuk (Login) terlebih dahulu.');
 
-        const res = await fetch('http://localhost:5000/api/v1/users/profile', {
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/v1/users/profile', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -77,7 +77,7 @@ const Profile = () => {
 
     if (schoolsList.length === 0) {
       try {
-        const res = await fetch('http://localhost:5000/api/schools');
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/schools');
         const data = await res.json();
         if (data.success) {
           setSchoolsList(data.data);
@@ -94,7 +94,7 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/v1/users/profile', {
+      const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/v1/users/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

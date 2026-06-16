@@ -8,7 +8,7 @@ const Articles = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/articles');
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/articles');
         const data = await res.json();
 
         if (data.success && data.data.length > 0) {
