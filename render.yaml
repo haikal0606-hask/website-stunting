@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: stuntingcare-api
+    env: node
+    # Ini adalah kunci untuk monorepo: Render HANYA akan membaca folder backend
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: ~20
+      - key: PORT
+        value: "5000"
+      # Nilai sync: false berarti Anda harus mengisi value-nya manual di Dashboard Render demi keamanan
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
