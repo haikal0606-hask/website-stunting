@@ -1,0 +1,33 @@
+{
+  "name": "website-stunting",
+  "version": "1.0.0",
+  "description": "Website literasi pencegahan stunting untuk remaja SMA",
+  "main": "backend/server.js",
+  "scripts": {
+    "dev": "nodemon backend/server.js",
+    "start": "node backend/server.js",
+    "client": "cd frontend && npm start",
+    "server": "nodemon backend/server.js",
+    "dev-all": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^7.0.0",
+    "mongoose": "^7.8.7"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.10"
+  },
+  "keywords": [
+    "stunting",
+    "education",
+    "health"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
