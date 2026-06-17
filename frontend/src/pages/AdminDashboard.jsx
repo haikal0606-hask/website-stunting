@@ -86,8 +86,8 @@ const AdminDashboard = () => {
     e.preventDefault();
     const isEdit = modalType === 'edit';
     const url = isEdit 
-      ? `/api/articles/${articleForm.id}` 
-      : '/api/articles';
+      ? `${import.meta.env.VITE_API_URL || ''}/api/articles/${articleForm.id}` 
+      : `${import.meta.env.VITE_API_URL || ''}/api/articles`;
 
     try {
       setLoading(true);
@@ -136,8 +136,8 @@ const AdminDashboard = () => {
     e.preventDefault();
     const isEdit = modalType === 'edit';
     const url = isEdit 
-      ? `/api/quizzes/${quizForm.id}` 
-      : '/api/quizzes';
+      ? `${import.meta.env.VITE_API_URL || ''}/api/quizzes/${quizForm.id}` 
+      : `${import.meta.env.VITE_API_URL || ''}/api/quizzes`;
       
     try {
       const res = await fetch(url, {
@@ -183,8 +183,8 @@ const AdminDashboard = () => {
     e.preventDefault();
     const isEdit = modalType === 'edit';
     const url = isEdit 
-      ? `/api/schools/${schoolForm.id}` 
-      : '/api/schools';
+      ? `${import.meta.env.VITE_API_URL || ''}/api/schools/${schoolForm.id}` 
+      : `${import.meta.env.VITE_API_URL || ''}/api/schools`;
       
     try {
       setLoading(true);
@@ -229,8 +229,8 @@ const AdminDashboard = () => {
     e.preventDefault();
     const isEdit = modalType === 'edit';
     const url = isEdit 
-      ? `/api/literasi/${literasiForm.id}` 
-      : '/api/literasi';
+      ? `${import.meta.env.VITE_API_URL || ''}/api/literasi/${literasiForm.id}` 
+      : `${import.meta.env.VITE_API_URL || ''}/api/literasi`;
       
     const formData = new FormData();
     formData.append('tipe_kelompok', literasiForm.tipe_kelompok);
