@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
@@ -11,6 +11,22 @@ const Register = () => {
   });
   const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
+  const [schools, setSchools] = useState([]);
+
+  useEffect(() => {
+    const fetchSchools = async () => {
+      try {
+        const res = await fetch((import.meta.env.VITE_API_URL || '') + '/api/schools');
+        const data = await res.json();
+        if (data.success) {
+          setSchools(data.data);
+        }
+      } catch (err) {
+        console.error("Gagal mengambil data sekolah:", err);
+      }
+    };
+    fetchSchools();
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -115,15 +131,21 @@ const Register = () => {
              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                <div>
                  <label className="block text-sm font-bold text-slate-700 mb-2">Asal Sekolah / Instansi</label>
-                 <input 
-                   type="text" 
+                 <select
                    name="asal_sekolah"
                    value={formData.asal_sekolah}
                    onChange={handleInputChange}
                    required
-                   className="w-full bg-slate-50 border border-slate-200 text-slate-800 px-4 py-3 rounded-xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-medium"
-                   placeholder="Mis: SMAN 1 Banda Aceh"
-                 />
+                   className="w-full bg-slate-50 border border-slate-200 text-slate-800 px-4 py-3 rounded-xl focus:ring-4 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-medium appearance-none"
+                 >
+                   <option value="" disabled>Pilih Asal Sekolah / Instansi</option>
+                   {schools.map((school) => (
+                     <option key={school.school_id} value={school.nama_sekolah}>
+                       {school.nama_sekolah}
+                     </option>
+                   ))}
+                   <option value="Lainnya">Instansi Lainnya...</option>
+                 </select>
                </div>
                <div>
                  <label className="block text-sm font-bold text-slate-700 mb-2">Area / Wilayah</label>
