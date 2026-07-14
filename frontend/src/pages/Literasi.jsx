@@ -56,7 +56,7 @@ const Literasi = () => {
               <div className="flex items-center gap-3">
                 <div className="w-1.5 h-8 bg-violet-500 rounded-full"></div>
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight uppercase">
-                  2025 PEKAN EDUKASI GENTING
+                  2026 PEKAN EDUKASI GENTING
                 </h2>
               </div>
               
